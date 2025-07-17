@@ -8,7 +8,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 load_dotenv()
-API_KEY = 'f45f2d6e56bb4f2e9fc142720251406'
+API_KEY = ''
 BASE_URL = "http://api.weatherapi.com/v1/current.json"
 MAX_CONCURRENT_REQUESTS = 1000
 
