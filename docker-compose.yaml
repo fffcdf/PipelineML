@@ -121,13 +121,13 @@ services:
       - postgres-airflow
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
-      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres-airflow:5432/airflow
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres-airflow:5432/airflow
       AIRFLOW__WEBSERVER__SECRET_KEY: supersecret123
     volumes:
       - ./airflow/dags:/opt/airflow/dags
       - ./airflow/ml_code:/opt/airflow/ml_code
     entrypoint: >
-      bash -c "airflow db init &&
+      bash -c "airflow db migrate &&
                airflow users create --username airflow --firstname airflow --lastname airflow --role Admin --email airflow@example.com --password airflow"
 
   airflow-webserver:
@@ -142,7 +142,7 @@ services:
       - postgres-clean-data
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
-      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres-airflow:5432/airflow
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres-airflow:5432/airflow
       AIRFLOW__WEBSERVER__SECRET_KEY: supersecret123
       AIRFLOW_CONN_POSTGRES_RAW_DATA: >-
         postgres://airflow:airflow@postgres-raw-data:5432/raw
@@ -169,7 +169,7 @@ services:
       - postgres-clean-data
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
-      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres-airflow:5432/airflow
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres-airflow:5432/airflow
       AIRFLOW__WEBSERVER__SECRET_KEY: supersecret123
       AIRFLOW_CONN_POSTGRES_RAW_DATA: >-
         postgres://airflow:airflow@postgres-raw-data:5432/raw
