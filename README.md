@@ -1,10 +1,6 @@
 # PipelineML
-Структура проекта:  
-● Pipeline: Airflow.  
+Структура проекта:   
 ● API : [api](https://www.weatherapi.com/).  
-● Loging : MLflow.  
-● Containerization: Docker.  
-● ML: scikit-learn.  
 ● Кол-во классов: 47.  
 
 Реализованы следующие функции:
